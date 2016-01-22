@@ -229,6 +229,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/22/swift-week-02/" itemprop="url">
+                  Swift函数式编程体验
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-22T21:03:00+08:00" content="2016-01-22">
+              2016-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="external">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
+<p><code>Luhn算法</code>通过<code>函数式编程</code>的Swift实现：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> checksum = digits.characters</span><br><span class="line">            .<span class="built_in">reverse</span>()</span><br><span class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</span><br><span class="line">            .<span class="built_in">enumerate</span>()</span><br><span class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</span><br><span class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></span><br><span class="line">            &#125; % <span class="number">10</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个简短的函数已经展示了<code>函数式编程</code>的魅力——实在是太精炼了！<br>通过<code>函数式编程</code>实现，几乎比原来<code>过程式编程</code>的实现方式减少了一半以上的代码行数，非常精炼，没有任何冗余代码。<br>上面代码中的<code>flatMap()</code>其实就是<code>map()</code>方法，只不过是Swift里面的一种特殊实现。</p>
+<p>同样的，通过<code>函数式编程</code>实现<code>中国大陆身份证号码校验算法</code>，也异常精炼：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">computeCheckSum</span><span class="params">(idCardNo:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="type">R</span>:[<span class="type">Int</span>]          = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">let</span> checksumMap:[<span class="type">String</span>] = [<span class="string">"1"</span>, <span class="string">"0"</span>, <span class="string">"X"</span>, <span class="string">"9"</span>, <span class="string">"8"</span>, <span class="string">"7"</span>, <span class="string">"6"</span>, <span class="string">"5"</span>, <span class="string">"4"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>]</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="type">R</span>.<span class="built_in">enumerate</span>().<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> $<span class="number">0</span> + <span class="type">Int</span>(<span class="type">String</span>(idCardNo[$<span class="number">1.0</span>]))! * $<span class="number">1.1</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> checksumMap[sum % <span class="number">11</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我接触<code>函数式编程</code>比较晚，第一次接触到<code>map()</code>、<code>reduce()</code>、<code>filter()</code>这样的高级函数是在工作后学习Python时才了解到的，Swift这种新语言必然少不了这些高级函数，可谓是不知道比<code>Objective-C</code>高到哪里去了，所有的OC程序员都应该学习一个。</p>
+<p>大量函数式代码会使算法变得越发的晦涩难读，其实上面的算法不了解的人肯定会觉得晦涩，我之所以觉得精炼美妙，是因为我已经先用过程式的代码实现了一遍，已经理解了算法细节。所以<code>函数式编程</code>用在合适的地方就好，不要滥用。</p>
+<p>本质上说，<code>函数式编程</code>和<code>过程式编程</code>是两种完全不同的思维方式，后者更符合人类思维方式一些。以后可以在写完过程式的代码，再思考下用函数式该怎么表达，就当是思维体操了。</p>
+<p>完整代码在这里：</p>
+<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="external">银行卡校验算法(ISO/IEC 7812)</a></p>
+<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="external">中国大陆身份证校验算法</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/17/swift-week-01/" itemprop="url">
                   Swift第一周
                 </a>
@@ -1063,106 +1170,14 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2011/10/11/agreement/" itemprop="url">
-                  有关契约，有关人性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2011-10-11T14:22:55+08:00" content="2011-10-11">
-              2011-10-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/阅读/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>有朋友给我讲了自己的家事，朋友的嫂子因为夫妻两地分居一段时间就发生了外遇，离婚又舍不得两个孩子，不离婚没脸面在那个家庭中生活，家庭很不和睦。<br>我感叹了一句，地球很乱很乱。<br>其实我去年刚毕业在上一家公司就见过更乱的事情，所以面对这种传统的中年人外遇事件没感觉有啥震撼的。另外，我是支持一个人跟随自己的内心去寻找自己的幸福的，所以我其实对那些外遇啊，出轨啊背后的感情并没有批判态度，尽管那是不道德的。因为，一个人追求自己想要的感情有什么错吗？<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2011/10/11/agreement/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
         </div>
@@ -1201,7 +1216,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1215,7 +1230,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
