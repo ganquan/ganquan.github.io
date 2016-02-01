@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ganquan.org/about/index.html</loc>
+    <lastmod>2016-02-01T13:40:30.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ganquan.org/2016/01/22/swift-week-02/</loc>
-    <lastmod>2016-01-22T14:31:05.000Z</lastmod>
+    <lastmod>2016-01-22T14:32:45.000Z</lastmod>
   </url>
   
   <url>
@@ -64,11 +69,6 @@
   <url>
     <loc>http://ganquan.org/2015/11/22/hello-hexo/</loc>
     <lastmod>2015-11-22T06:29:27.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://ganquan.org/about/index.html</loc>
-    <lastmod>2015-11-22T04:36:12.000Z</lastmod>
   </url>
   
 </urlset>
