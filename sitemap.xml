@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ganquan.org/2016/02/14/observer-pattern-arch-ios-app/</loc>
+    <lastmod>2016-02-21T12:46:06.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ganquan.org/2016/02/08/boring-spring-festival/</loc>
     <lastmod>2016-02-08T06:48:05.000Z</lastmod>
   </url>
