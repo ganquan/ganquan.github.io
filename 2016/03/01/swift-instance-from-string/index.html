@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift,函数式编程," />
+  <meta name="keywords" content="Swift,技巧," />
 
 
 
@@ -51,22 +51,22 @@
 
 
 
-<meta name="description" content="银行卡校验算法(ISO/IEC 7812)蛮简单，轻松撸完。然后又用Swift函数式编程的方法优化了之前的实现，更加喜欢Swift了。
-Luhn算法通过函数式编程的Swift实现：
-1234567891011121314private func LuhnAlgorithm(digits:String) -&amp;gt;String &amp;#123;        let checksum = digits.">
+<meta name="description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
+123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
+然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift函数式编程体验">
-<meta property="og:url" content="http://ganquan.org/2016/01/22/swift-week-02/index.html">
+<meta property="og:title" content="Swift实现NSClassFromString">
+<meta property="og:url" content="http://ganquan.org/2016/03/01/swift-instance-from-string/index.html">
 <meta property="og:site_name" content="晴耕雨读">
-<meta property="og:description" content="银行卡校验算法(ISO/IEC 7812)蛮简单，轻松撸完。然后又用Swift函数式编程的方法优化了之前的实现，更加喜欢Swift了。
-Luhn算法通过函数式编程的Swift实现：
-1234567891011121314private func LuhnAlgorithm(digits:String) -&amp;gt;String &amp;#123;        let checksum = digits.">
-<meta property="og:updated_time" content="2016-01-22T14:32:45.000Z">
+<meta property="og:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
+123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
+然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
+<meta property="og:updated_time" content="2016-02-29T17:23:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift函数式编程体验">
-<meta name="twitter:description" content="银行卡校验算法(ISO/IEC 7812)蛮简单，轻松撸完。然后又用Swift函数式编程的方法优化了之前的实现，更加喜欢Swift了。
-Luhn算法通过函数式编程的Swift实现：
-1234567891011121314private func LuhnAlgorithm(digits:String) -&amp;gt;String &amp;#123;        let checksum = digits.">
+<meta name="twitter:title" content="Swift实现NSClassFromString">
+<meta name="twitter:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
+123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
+然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
 
 
 
@@ -78,7 +78,7 @@ Luhn算法通过函数式编程的Swift实现：
   };
 </script>
 
-  <title> Swift函数式编程体验 | 晴耕雨读 </title>
+  <title> Swift实现NSClassFromString | 晴耕雨读 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -218,7 +218,7 @@ Luhn算法通过函数式编程的Swift实现：
             
             
               
-                Swift函数式编程体验
+                Swift实现NSClassFromString
               
             
           </h1>
@@ -227,8 +227,8 @@ Luhn算法通过函数式编程的Swift实现：
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-22T21:03:00+08:00" content="2016-01-22">
-              2016-01-22
+            <time itemprop="dateCreated" datetime="2016-03-01T00:44:47+08:00" content="2016-03-01">
+              2016-03-01
             </time>
           </span>
 
@@ -266,18 +266,10 @@ Luhn算法通过函数式编程的Swift实现：
       
 
       
-        <span itemprop="articleBody"><p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="external">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
-<p><code>Luhn算法</code>通过<code>函数式编程</code>的Swift实现：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> checksum = digits.characters</span><br><span class="line">            .<span class="built_in">reverse</span>()</span><br><span class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</span><br><span class="line">            .<span class="built_in">enumerate</span>()</span><br><span class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</span><br><span class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></span><br><span class="line">            &#125; % <span class="number">10</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个简短的函数已经展示了<code>函数式编程</code>的魅力——实在是太精炼了！<br>通过<code>函数式编程</code>实现，几乎比原来<code>过程式编程</code>的实现方式减少了一半以上的代码行数，非常精炼，没有任何冗余代码。<br>上面代码中的<code>flatMap()</code>其实就是<code>map()</code>方法，只不过是Swift里面的一种特殊实现。</p>
-<p>同样的，通过<code>函数式编程</code>实现<code>中国大陆身份证号码校验算法</code>，也异常精炼：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">computeCheckSum</span><span class="params">(idCardNo:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="type">R</span>:[<span class="type">Int</span>]          = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">let</span> checksumMap:[<span class="type">String</span>] = [<span class="string">"1"</span>, <span class="string">"0"</span>, <span class="string">"X"</span>, <span class="string">"9"</span>, <span class="string">"8"</span>, <span class="string">"7"</span>, <span class="string">"6"</span>, <span class="string">"5"</span>, <span class="string">"4"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>]</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="type">R</span>.<span class="built_in">enumerate</span>().<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> $<span class="number">0</span> + <span class="type">Int</span>(<span class="type">String</span>(idCardNo[$<span class="number">1.0</span>]))! * $<span class="number">1.1</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> checksumMap[sum % <span class="number">11</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我接触<code>函数式编程</code>比较晚，第一次接触到<code>map()</code>、<code>reduce()</code>、<code>filter()</code>这样的高级函数是在工作后学习Python时才了解到的，Swift这种新语言必然少不了这些高级函数，可谓是不知道比<code>Objective-C</code>高到哪里去了，所有的OC程序员都应该学习一个。</p>
-<p>大量函数式代码会使算法变得越发的晦涩难读，其实上面的算法不了解的人肯定会觉得晦涩，我之所以觉得精炼美妙，是因为我已经先用过程式的代码实现了一遍，已经理解了算法细节。所以<code>函数式编程</code>用在合适的地方就好，不要滥用。</p>
-<p>本质上说，<code>函数式编程</code>和<code>过程式编程</code>是两种完全不同的思维方式，后者更符合人类思维方式一些。以后可以在写完过程式的代码，再思考下用函数式该怎么表达，就当是思维体操了。</p>
-<p>完整代码在这里：</p>
-<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="external">银行卡校验算法(ISO/IEC 7812)</a></p>
-<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="external">中国大陆身份证校验算法</a></p>
+        <span itemprop="articleBody"><p>在OC中<code>NSClassFromString</code>这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></span><br><span class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></span><br><span class="line">Class __nullable <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</span><br></pre></td></tr></table></figure>
+<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></span><br><span class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</span><br><span class="line"><span class="keyword">let</span> viewController = classes[className]!()</span><br></pre></td></tr></table></figure></p>
+<p>利用Swift中的泛型机制、闭包语法，把NSClassFromString问题转化成了Dictionary的依据key查Value问题，非常巧妙地实现了通过String生成对象的机制。<br>略显麻烦的是，需要支持这个机制的类，都要先把对应的闭包写到<code>Dictionary</code>中。同时要注意，classes[className]返回的是一个optional类型，所以需要<code>!</code>解包，然后通过<code>()</code>调用闭包。</p>
 </span>
       
     </div>
@@ -288,7 +280,7 @@ Luhn算法通过函数式编程的Swift实现：
           
             <a href="/tags/Swift/" rel="tag">#Swift</a>
           
-            <a href="/tags/函数式编程/" rel="tag">#函数式编程</a>
+            <a href="/tags/技巧/" rel="tag">#技巧</a>
           
         </div>
       
@@ -297,17 +289,13 @@ Luhn算法通过函数式编程的Swift实现：
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/17/swift-week-01/" rel="next" title="Swift第一周">
-                <i class="fa fa-chevron-left"></i> Swift第一周
+              <a href="/2016/02/14/observer-pattern-arch-ios-app/" rel="next" title="通过观察者模式实现简单好用的iOS App构架">
+                <i class="fa fa-chevron-left"></i> 通过观察者模式实现简单好用的iOS App构架
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/08/boring-spring-festival/" rel="prev" title="无聊的春节">
-                无聊的春节 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

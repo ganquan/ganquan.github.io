@@ -197,6 +197,114 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/01/swift-instance-from-string/" itemprop="url">
+                  Swift实现NSClassFromString
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-01T00:44:47+08:00" content="2016-03-01">
+              2016-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>在OC中<code>NSClassFromString</code>这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></span><br><span class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></span><br><span class="line">Class __nullable <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</span><br></pre></td></tr></table></figure>
+<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></span><br><span class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</span><br><span class="line"><span class="keyword">let</span> viewController = classes[className]!()</span><br></pre></td></tr></table></figure></p>
+<p>利用Swift中的泛型机制、闭包语法，把NSClassFromString问题转化成了Dictionary的依据key查Value问题，非常巧妙地实现了通过String生成对象的机制。<br>略显麻烦的是，需要支持这个机制的类，都要先把对应的闭包写到<code>Dictionary</code>中。同时要注意，classes[className]返回的是一个optional类型，所以需要<code>!</code>解包，然后通过<code>()</code>调用闭包。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1071,103 +1179,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2012/07/15/40s/" itemprop="url">
-                  胡适《四十自述》读后
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2012-07-15T16:19:46+08:00" content="2012-07-15">
-              2012-07-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/阅读/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>《四十自述》主要叙述了胡适母亲嫁入胡家和胡适幼年跟少年阶段读书求学的经历，以及他推动白话文运动的中的一些观点讨论等。</p>
-<p>当今21世纪的教育，尤其是思想教育，远不如100年前，甚至严重退步。今日之学生受益于信息时代，资讯倒是宽广很多，不过被动接受远多过主动思考，真正的视野反倒狭隘了，更无独立思想可言。11岁的胡适读《资治通鉴》中范缜的《神灭论》便形成了无神论思想，影响胡适一生。在澄衷学堂东二斋（相当于现在的高中二年级，但胡适年仅15岁）念书时，被要求以“物竞天择，适者生存，试申其义”为题作文，15岁就学习严复翻译的《天演论》、《群己权界论》等书。作为对比，100年后的高中生，思想教育严重退步，沉溺于追逐高分和标准答案，独立思想更是早就被从小开始的填鸭和洗脑扼杀干净。从此一点就可看出，大陆出不了大师很正常，要是出了大师反而不正常了。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2012/07/15/40s/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1214,7 +1225,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1228,7 +1239,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
