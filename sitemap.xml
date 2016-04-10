@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ganquan.org/2016/04/07/2016-04-07/</loc>
+    <lastmod>2016-04-10T08:00:03.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ganquan.org/2016/03/01/swift-instance-from-string/</loc>
     <lastmod>2016-02-29T17:23:31.000Z</lastmod>
   </url>
