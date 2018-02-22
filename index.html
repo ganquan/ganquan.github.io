@@ -51,15 +51,12 @@
 
 
 
-<meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="晴耕雨读">
 <meta property="og:url" content="http://ganquan.org/index.html">
 <meta property="og:site_name" content="晴耕雨读">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="晴耕雨读">
-<meta name="twitter:description">
 
 
 
@@ -229,6 +226,88 @@
             
               
                 
+                <a class="post-title-link" href="/2018/02/22/Hello-Again-Hexo/" itemprop="url">
+                  Hello Again Hexo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-02-22T15:50:29+08:00" content="2018-02-22">
+              2018-02-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>还是Hexo好。<br>Wordpress不想用，对PHP没好感。<br>Ghost至今都还在不是很成熟，要说是专注于写，那还有什么比编辑器写markdown更纯粹呢？</p>
+<p>两年没更新了，还是用hexo写起来吧。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/07/2016-04-07/" itemprop="url">
                   职场笔记
                 </a>
@@ -280,8 +359,8 @@
 
       
         
-          <h1 id="一、问题">一、问题</h1><p>最近不少同事离职，公司氛围不太好。我一直在思考几个问题：</p>
-<h2 id="为什么离职？">为什么离职？</h2><p>网上传的很火的马云语录曰：员工的离职原因林林总总，只有两点最真实：</p>
+          <h1 id="一、问题"><a href="#一、问题" class="headerlink" title="一、问题"></a>一、问题</h1><p>最近不少同事离职，公司氛围不太好。我一直在思考几个问题：</p>
+<h2 id="为什么离职？"><a href="#为什么离职？" class="headerlink" title="为什么离职？"></a>为什么离职？</h2><p>网上传的很火的马云语录曰：员工的离职原因林林总总，只有两点最真实：</p>
 <ul>
 <li>钱，没给到位；</li>
 <li>心，委屈了。</li>
@@ -385,8 +464,8 @@
           <span itemprop="articleBody">
             
               <p>在OC中<code>NSClassFromString</code>这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></span><br><span class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></span><br><span class="line">Class __nullable <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</span><br></pre></td></tr></table></figure>
-<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></span><br><span class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</span><br><span class="line"><span class="keyword">let</span> viewController = classes[className]!()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></div><div class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></div><div class="line">Class __<span class="keyword">nullable</span> <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</div></pre></td></tr></table></figure>
+<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></div><div class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</div><div class="line"><span class="keyword">let</span> viewController = classes[className]!()</div></pre></td></tr></table></figure></p>
 <p>利用Swift中的泛型机制、闭包语法，把NSClassFromString问题转化成了Dictionary的依据key查Value问题，非常巧妙地实现了通过String生成对象的机制。<br>略显麻烦的是，需要支持这个机制的类，都要先把对应的闭包写到<code>Dictionary</code>中。同时要注意，classes[className]返回的是一个optional类型，所以需要<code>!</code>解包，然后通过<code>()</code>调用闭包。</p>
 
             
@@ -687,10 +766,10 @@
             
               <p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="external">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
 <p><code>Luhn算法</code>通过<code>函数式编程</code>的Swift实现：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> checksum = digits.characters</span><br><span class="line">            .<span class="built_in">reverse</span>()</span><br><span class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</span><br><span class="line">            .<span class="built_in">enumerate</span>()</span><br><span class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</span><br><span class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></span><br><span class="line">            &#125; % <span class="number">10</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> checksum = digits.characters</div><div class="line">            .<span class="built_in">reverse</span>()</div><div class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</div><div class="line">            .<span class="built_in">enumerate</span>()</div><div class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></div><div class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</div><div class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></div><div class="line">            &#125; % <span class="number">10</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个简短的函数已经展示了<code>函数式编程</code>的魅力——实在是太精炼了！<br>通过<code>函数式编程</code>实现，几乎比原来<code>过程式编程</code>的实现方式减少了一半以上的代码行数，非常精炼，没有任何冗余代码。<br>上面代码中的<code>flatMap()</code>其实就是<code>map()</code>方法，只不过是Swift里面的一种特殊实现。</p>
 <p>同样的，通过<code>函数式编程</code>实现<code>中国大陆身份证号码校验算法</code>，也异常精炼：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">computeCheckSum</span><span class="params">(idCardNo:String)</span></span> -&gt;<span class="type">String</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="type">R</span>:[<span class="type">Int</span>]          = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">let</span> checksumMap:[<span class="type">String</span>] = [<span class="string">"1"</span>, <span class="string">"0"</span>, <span class="string">"X"</span>, <span class="string">"9"</span>, <span class="string">"8"</span>, <span class="string">"7"</span>, <span class="string">"6"</span>, <span class="string">"5"</span>, <span class="string">"4"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>]</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="type">R</span>.<span class="built_in">enumerate</span>().<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> $<span class="number">0</span> + <span class="type">Int</span>(<span class="type">String</span>(idCardNo[$<span class="number">1.0</span>]))! * $<span class="number">1.1</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> checksumMap[sum % <span class="number">11</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">computeCheckSum</span><span class="params">(idCardNo:String)</span></span> -&gt;<span class="type">String</span> &#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> <span class="type">R</span>:[<span class="type">Int</span>]          = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</div><div class="line">    <span class="keyword">let</span> checksumMap:[<span class="type">String</span>] = [<span class="string">"1"</span>, <span class="string">"0"</span>, <span class="string">"X"</span>, <span class="string">"9"</span>, <span class="string">"8"</span>, <span class="string">"7"</span>, <span class="string">"6"</span>, <span class="string">"5"</span>, <span class="string">"4"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>]</div><div class="line">    <span class="keyword">let</span> sum = <span class="type">R</span>.<span class="built_in">enumerate</span>().<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> $<span class="number">0</span> + <span class="type">Int</span>(<span class="type">String</span>(idCardNo[$<span class="number">1.0</span>]))! * $<span class="number">1.1</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> checksumMap[sum % <span class="number">11</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我接触<code>函数式编程</code>比较晚，第一次接触到<code>map()</code>、<code>reduce()</code>、<code>filter()</code>这样的高级函数是在工作后学习Python时才了解到的，Swift这种新语言必然少不了这些高级函数，可谓是不知道比<code>Objective-C</code>高到哪里去了，所有的OC程序员都应该学习一个。</p>
 <p>大量函数式代码会使算法变得越发的晦涩难读，其实上面的算法不了解的人肯定会觉得晦涩，我之所以觉得精炼美妙，是因为我已经先用过程式的代码实现了一遍，已经理解了算法细节。所以<code>函数式编程</code>用在合适的地方就好，不要滥用。</p>
 <p>本质上说，<code>函数式编程</code>和<code>过程式编程</code>是两种完全不同的思维方式，后者更符合人类思维方式一些。以后可以在写完过程式的代码，再思考下用函数式该怎么表达，就当是思维体操了。</p>
@@ -794,13 +873,13 @@
             
               <p>这个星期繁忙工作中抽空把Swift语法又学一遍。之所以说“又学一遍”，是因为其实在Swift刚面世时，就有去学习过。但是由于实际工作中基本上不用，时间一长就生疏了。如此已经反复了几遍，实在汗颜。</p>
 <p>于是我决定直接用Swift写东西练手，杜绝低效重复学习，浪费时间。</p>
-<h3 id="本周进展">本周进展</h3><p>把Swift语法看了一遍，又用Swift写了身份证号码的校验算法。几点感受：</p>
+<h3 id="本周进展"><a href="#本周进展" class="headerlink" title="本周进展"></a>本周进展</h3><p>把Swift语法看了一遍，又用Swift写了身份证号码的校验算法。几点感受：</p>
 <ul>
 <li>即使目前Swift已经开发到了2.2版本，可是基本API依旧非常不完善，使用起来很不方便</li>
 <li>由于需要考虑到多人协作、公共库维护等问题，Swift目前依旧不适合用到公司项目中，只能用在个人项目或者学习练手</li>
 <li>从OC过渡到Swift初期，写出来的Swift代码有浓烈OC风格，强迫症会感觉非常难受</li>
 </ul>
-<h3 id="下周计划">下周计划</h3><p>继续用Swift把银行卡校验算法写一遍。熟悉Swift最好的办法就是实际用起来，这样就不会生疏和忘记。</p>
+<h3 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h3><p>继续用Swift把银行卡校验算法写一遍。熟悉Swift最好的办法就是实际用起来，这样就不会生疏和忘记。</p>
 
             
           </span>
@@ -1088,103 +1167,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2012/08/12/look-for-homeland/" itemprop="url">
-                  高尔泰《寻找家园》读后
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2012-08-12T13:11:48+08:00" content="2012-08-12">
-              2012-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/阅读/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>半个月前读友小搞给我推荐了高尔泰的《寻找家园》，我第一时间便去找来阅读，半个月过去了，今天终于彻底读完。翻看阅读过程中的记录，不管是用钢笔记在本子上只言片语的感想，还是键盘敲在文档里零零碎碎的片断体会，竟然都是我所作过笔记最多的一本书。</p>
-<p>一句话评书：真实，带着锋利的真实，让我感到一种独特的深刻。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2012/08/12/look-for-homeland/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1231,7 +1213,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1307,7 +1289,7 @@
         <div class="copyright" >
   
   &copy;  2008 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

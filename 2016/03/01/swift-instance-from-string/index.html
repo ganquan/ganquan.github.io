@@ -51,22 +51,17 @@
 
 
 
-<meta name="description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
-123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
-然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
+<meta name="description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。 123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName); 然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
+<meta name="keywords" content="Swift,技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift实现NSClassFromString">
 <meta property="og:url" content="http://ganquan.org/2016/03/01/swift-instance-from-string/index.html">
 <meta property="og:site_name" content="晴耕雨读">
-<meta property="og:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
-123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
-然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
+<meta property="og:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。 123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName); 然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
 <meta property="og:updated_time" content="2016-02-29T17:23:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift实现NSClassFromString">
-<meta name="twitter:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。
-123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName);
-然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
+<meta name="twitter:description" content="在OC中NSClassFromString这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。 123//此方法声明在NSObjCRuntime.h//显然是利用ObjC的runtime机制实现的Class __nullable NSClassFromString(NSString *aClassName); 然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC">
 
 
 
@@ -267,8 +262,8 @@
 
       
         <span itemprop="articleBody"><p>在OC中<code>NSClassFromString</code>这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></span><br><span class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></span><br><span class="line">Class __nullable <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</span><br></pre></td></tr></table></figure>
-<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></span><br><span class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</span><br><span class="line"><span class="keyword">let</span> viewController = classes[className]!()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></div><div class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></div><div class="line">Class __<span class="keyword">nullable</span> <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</div></pre></td></tr></table></figure>
+<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></div><div class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</div><div class="line"><span class="keyword">let</span> viewController = classes[className]!()</div></pre></td></tr></table></figure></p>
 <p>利用Swift中的泛型机制、闭包语法，把NSClassFromString问题转化成了Dictionary的依据key查Value问题，非常巧妙地实现了通过String生成对象的机制。<br>略显麻烦的是，需要支持这个机制的类，都要先把对应的闭包写到<code>Dictionary</code>中。同时要注意，classes[className]返回的是一个optional类型，所以需要<code>!</code>解包，然后通过<code>()</code>调用闭包。</p>
 </span>
       
@@ -367,7 +362,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -460,7 +455,7 @@
         <div class="copyright" >
   
   &copy;  2008 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

@@ -2,93 +2,136 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ganquan.org/2018/02/22/Hello-Again-Hexo/</loc>
+    
+    <lastmod>2018-02-22T08:12:22.637Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ganquan.org/2016/04/07/2016-04-07/</loc>
+    
     <lastmod>2016-04-10T08:00:03.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/03/01/swift-instance-from-string/</loc>
+    
     <lastmod>2016-02-29T17:23:31.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/02/14/observer-pattern-arch-ios-app/</loc>
+    
     <lastmod>2016-02-21T12:46:06.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/02/08/boring-spring-festival/</loc>
+    
     <lastmod>2016-02-08T06:48:05.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/about/index.html</loc>
+    
     <lastmod>2016-02-01T13:40:30.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/01/22/swift-week-02/</loc>
+    
     <lastmod>2016-01-22T14:32:45.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/01/17/swift-week-01/</loc>
+    
     <lastmod>2016-01-17T14:45:28.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2016/01/10/2016-start/</loc>
+    
     <lastmod>2016-01-10T13:08:35.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2012/08/12/look-for-homeland/</loc>
+    
     <lastmod>2015-11-23T12:05:32.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2012/07/31/chinese-music-instrment/</loc>
+    
     <lastmod>2015-11-23T12:05:02.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2012/07/15/40s/</loc>
+    
     <lastmod>2015-11-23T12:04:49.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2012/07/02/father-and-roc/</loc>
+    
     <lastmod>2015-11-23T12:04:15.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2011/10/11/agreement/</loc>
+    
     <lastmod>2015-11-23T12:03:58.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2012/02/19/20120219-reading/</loc>
+    
     <lastmod>2015-11-23T12:03:41.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2013/05/18/share-article/</loc>
+    
     <lastmod>2015-11-23T12:03:11.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/categories/index.html</loc>
+    
     <lastmod>2015-11-23T11:48:56.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/tags/index.html</loc>
+    
     <lastmod>2015-11-23T11:48:22.000Z</lastmod>
+    
   </url>
   
   <url>
     <loc>http://ganquan.org/2015/11/22/hello-hexo/</loc>
+    
     <lastmod>2015-11-22T06:29:27.000Z</lastmod>
+    
   </url>
   
 </urlset>
