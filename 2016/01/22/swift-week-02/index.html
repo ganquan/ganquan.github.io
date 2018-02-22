@@ -58,6 +58,7 @@
 <meta property="og:url" content="http://ganquan.org/2016/01/22/swift-week-02/index.html">
 <meta property="og:site_name" content="晴耕雨读">
 <meta property="og:description" content="银行卡校验算法(ISO/IEC 7812)蛮简单，轻松撸完。然后又用Swift函数式编程的方法优化了之前的实现，更加喜欢Swift了。 Luhn算法通过函数式编程的Swift实现： 1234567891011121314private func LuhnAlgorithm(digits:String) -&amp;gt;String &amp;#123;        let checksum = digits.">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-01-22T14:32:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift函数式编程体验">
@@ -261,7 +262,7 @@
       
 
       
-        <span itemprop="articleBody"><p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="external">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
+        <span itemprop="articleBody"><p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="noopener">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
 <p><code>Luhn算法</code>通过<code>函数式编程</code>的Swift实现：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> checksum = digits.characters</div><div class="line">            .<span class="built_in">reverse</span>()</div><div class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</div><div class="line">            .<span class="built_in">enumerate</span>()</div><div class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></div><div class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</div><div class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></div><div class="line">            &#125; % <span class="number">10</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个简短的函数已经展示了<code>函数式编程</code>的魅力——实在是太精炼了！<br>通过<code>函数式编程</code>实现，几乎比原来<code>过程式编程</code>的实现方式减少了一半以上的代码行数，非常精炼，没有任何冗余代码。<br>上面代码中的<code>flatMap()</code>其实就是<code>map()</code>方法，只不过是Swift里面的一种特殊实现。</p>
@@ -271,8 +272,8 @@
 <p>大量函数式代码会使算法变得越发的晦涩难读，其实上面的算法不了解的人肯定会觉得晦涩，我之所以觉得精炼美妙，是因为我已经先用过程式的代码实现了一遍，已经理解了算法细节。所以<code>函数式编程</code>用在合适的地方就好，不要滥用。</p>
 <p>本质上说，<code>函数式编程</code>和<code>过程式编程</code>是两种完全不同的思维方式，后者更符合人类思维方式一些。以后可以在写完过程式的代码，再思考下用函数式该怎么表达，就当是思维体操了。</p>
 <p>完整代码在这里：</p>
-<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="external">银行卡校验算法(ISO/IEC 7812)</a></p>
-<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="external">中国大陆身份证校验算法</a></p>
+<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="noopener">银行卡校验算法(ISO/IEC 7812)</a></p>
+<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="noopener">中国大陆身份证校验算法</a></p>
 </span>
       
     </div>
@@ -300,8 +301,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/08/boring-spring-festival/" rel="prev" title="无聊的春节">
-                无聊的春节 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/07/2016-04-07/" rel="prev" title="职场笔记">
+                职场笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -370,21 +371,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

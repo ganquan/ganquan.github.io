@@ -55,6 +55,7 @@
 <meta property="og:title" content="晴耕雨读">
 <meta property="og:url" content="http://ganquan.org/index.html">
 <meta property="og:site_name" content="晴耕雨读">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="晴耕雨读">
 
@@ -193,15 +194,6 @@
     
 
     
-    
-      
-      
-        
-        
-        
-      
-
-      
     
 
     
@@ -410,307 +402,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/01/swift-instance-from-string/" itemprop="url">
-                  Swift实现NSClassFromString
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-03-01T00:44:47+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>在OC中<code>NSClassFromString</code>这个方法非常实用，基于这个方法可以实现动态生成对象，十分灵活。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//此方法声明在NSObjCRuntime.h</span></div><div class="line"><span class="comment">//显然是利用ObjC的runtime机制实现的</span></div><div class="line">Class __<span class="keyword">nullable</span> <span class="built_in">NSClassFromString</span>(<span class="built_in">NSString</span> *aClassName);</div></pre></td></tr></table></figure>
-<p>然而在Swift中却没有这样的方法（废话，Swift的runtime和ObjC完全不一样嘛），如果Swift也通过ObjC那样的runtime机制来实现，效率就会有明显的折扣了。<br>不过Swift实在太强大，可以利于语言本身的技巧，可以做到类似的事情：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> className: <span class="type">String</span> = <span class="string">"SampleViewController"</span></div><div class="line"><span class="keyword">let</span> classes: <span class="type">Dictionary</span>&lt;<span class="type">String</span>, ()-&gt;<span class="type">UIViewController</span>&gt; = [className : &#123; <span class="keyword">return</span> <span class="type">SampleViewController</span>() &#125;]</div><div class="line"><span class="keyword">let</span> viewController = classes[className]!()</div></pre></td></tr></table></figure></p>
-<p>利用Swift中的泛型机制、闭包语法，把NSClassFromString问题转化成了Dictionary的依据key查Value问题，非常巧妙地实现了通过String生成对象的机制。<br>略显麻烦的是，需要支持这个机制的类，都要先把对应的闭包写到<code>Dictionary</code>中。同时要注意，classes[className]返回的是一个optional类型，所以需要<code>!</code>解包，然后通过<code>()</code>调用闭包。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/14/observer-pattern-arch-ios-app/" itemprop="url">
-                  通过观察者模式实现简单好用的iOS App构架
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-14T22:03:48+08:00" content="2016-02-14">
-              2016-02-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在工作中我开发过的APP都采用了相同的构架，这个构架非常简单易用，在团队写作中带来了诸多便利，我决定写出来分享。</p>
-<ul>
-<li>数据和界面分离，在宏观层面上也遵从了MVC的思想</li>
-<li>提高代码的可维护性和重用性</li>
-<li>在多个App之间低成本快速共享业务</li>
-<li>多个App项目组的开发人员横向流动需要快速上手新App的代码</li>
-</ul>
-<p>这个简单的构架主要思想是观察者模式，因为不能开源公司产品代码，所以我采用Swift重写构架核心，尽管Swift实现与Objective-C实现存在差异，不过核心思想是相通的，很容易就可以用Objective-C重写一个轮子出来😊😊😊</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/14/observer-pattern-arch-ios-app/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/08/boring-spring-festival/" itemprop="url">
-                  无聊的春节
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-02-08T14:21:42+08:00" content="2016-02-08">
-              2016-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/杂感/" itemprop="url" rel="index">
-                    <span itemprop="name">杂感</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>春节越发的乏味，这几年感慨越来越深：既没有团聚的喜悦，也没有假日的休闲。时下的春节很像一锅乱炖的大杂烩，嘈杂，散发各类奇怪的味道，就是没有食物纯粹的本味，令人恶心。</p>
-<p>心里有个声音在喊：明年我不想回家过春节了，我就想一个人静静的呆着。<br>可是我没有说出来，只是留在心里。</p>
-<p>我向往的假期，就是静静的随心生活，用最平淡、最普通，最简单的的方式生活。</p>
-<p>简单的饭菜，一本书，一杯茶。可以静静的随心做点想做的小事，足矣。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/01/22/swift-week-02/" itemprop="url">
                   Swift函数式编程体验
                 </a>
@@ -764,7 +455,7 @@
         
           <span itemprop="articleBody">
             
-              <p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="external">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
+              <p>银行卡校验算法(<a href="https://en.wikipedia.org/wiki/ISO/IEC_7812" target="_blank" rel="noopener">ISO/IEC 7812</a>)蛮简单，轻松撸完。然后又用Swift<code>函数式编程</code>的方法优化了之前的实现，更加喜欢Swift了。</p>
 <p><code>Luhn算法</code>通过<code>函数式编程</code>的Swift实现：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">LuhnAlgorithm</span><span class="params">(digits:String)</span></span> -&gt;<span class="type">String</span> &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> checksum = digits.characters</div><div class="line">            .<span class="built_in">reverse</span>()</div><div class="line">            .flatMap&#123; <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) &#125;</div><div class="line">            .<span class="built_in">enumerate</span>()</div><div class="line">            .<span class="built_in">reduce</span>(<span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">let</span> indexIsOdd = $<span class="number">1.0</span> % <span class="number">2</span> == <span class="number">1</span></div><div class="line">                <span class="keyword">guard</span> indexIsOdd <span class="keyword">else</span> &#123; <span class="keyword">return</span> $<span class="number">0</span> + ($<span class="number">1.1</span> == <span class="number">9</span> ? <span class="number">9</span> : $<span class="number">1.1</span> * <span class="number">2</span> % <span class="number">9</span>) &#125;</div><div class="line">                <span class="keyword">return</span> $<span class="number">0</span> + $<span class="number">1.1</span></div><div class="line">            &#125; % <span class="number">10</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> checksum == <span class="number">0</span> ? <span class="type">String</span>(checksum) : <span class="type">String</span>(<span class="number">10</span> - checksum)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个简短的函数已经展示了<code>函数式编程</code>的魅力——实在是太精炼了！<br>通过<code>函数式编程</code>实现，几乎比原来<code>过程式编程</code>的实现方式减少了一半以上的代码行数，非常精炼，没有任何冗余代码。<br>上面代码中的<code>flatMap()</code>其实就是<code>map()</code>方法，只不过是Swift里面的一种特殊实现。</p>
@@ -774,8 +465,8 @@
 <p>大量函数式代码会使算法变得越发的晦涩难读，其实上面的算法不了解的人肯定会觉得晦涩，我之所以觉得精炼美妙，是因为我已经先用过程式的代码实现了一遍，已经理解了算法细节。所以<code>函数式编程</code>用在合适的地方就好，不要滥用。</p>
 <p>本质上说，<code>函数式编程</code>和<code>过程式编程</code>是两种完全不同的思维方式，后者更符合人类思维方式一些。以后可以在写完过程式的代码，再思考下用函数式该怎么表达，就当是思维体操了。</p>
 <p>完整代码在这里：</p>
-<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="external">银行卡校验算法(ISO/IEC 7812)</a></p>
-<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="external">中国大陆身份证校验算法</a></p>
+<p><strong>[1]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/BankCard.swift" target="_blank" rel="noopener">银行卡校验算法(ISO/IEC 7812)</a></p>
+<p><strong>[2]</strong> <a href="https://github.com/ganquan/swiftToolbox/blob/master/swiftToolbox/extension/IdCard.swift" target="_blank" rel="noopener">中国大陆身份证校验算法</a></p>
 
             
           </span>
@@ -1167,6 +858,296 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/08/12/look-for-homeland/" itemprop="url">
+                  高尔泰《寻找家园》读后
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2012-08-12T13:11:48+08:00" content="2012-08-12">
+              2012-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/阅读/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>半个月前读友小搞给我推荐了高尔泰的《寻找家园》，我第一时间便去找来阅读，半个月过去了，今天终于彻底读完。翻看阅读过程中的记录，不管是用钢笔记在本子上只言片语的感想，还是键盘敲在文档里零零碎碎的片断体会，竟然都是我所作过笔记最多的一本书。</p>
+<p>一句话评书：真实，带着锋利的真实，让我感到一种独特的深刻。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012/08/12/look-for-homeland/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/07/31/chinese-music-instrment/" itemprop="url">
+                  古琴、古筝、箫、笛
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2012-07-31T14:38:12+08:00" content="2012-07-31">
+              2012-07-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/阅读/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>《笛与箫的对比》<br>《古琴和古筝的对比》</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012/07/31/chinese-music-instrment/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012/07/15/40s/" itemprop="url">
+                  胡适《四十自述》读后
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2012-07-15T16:19:46+08:00" content="2012-07-15">
+              2012-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/阅读/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>《四十自述》主要叙述了胡适母亲嫁入胡家和胡适幼年跟少年阶段读书求学的经历，以及他推动白话文运动的中的一些观点讨论等。</p>
+<p>当今21世纪的教育，尤其是思想教育，远不如100年前，甚至严重退步。今日之学生受益于信息时代，资讯倒是宽广很多，不过被动接受远多过主动思考，真正的视野反倒狭隘了，更无独立思想可言。11岁的胡适读《资治通鉴》中范缜的《神灭论》便形成了无神论思想，影响胡适一生。在澄衷学堂东二斋（相当于现在的高中二年级，但胡适年仅15岁）念书时，被要求以“物竞天择，适者生存，试申其义”为题作文，15岁就学习严复翻译的《天演论》、《群己权界论》等书。作为对比，100年后的高中生，思想教育严重退步，沉溺于追逐高分和标准答案，独立思想更是早就被从小开始的填鸭和洗脑扼杀干净。从此一点就可看出，大陆出不了大师很正常，要是出了大师反而不正常了。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012/07/15/40s/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -1213,21 +1194,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
