@@ -15,3 +15,10 @@ themeVariant = "blue"
 author = "GanQuan"
 # Description of the site, will be used in meta information
 description = "TechNotes"
+
+[[menu.shortcuts]] 
+name = "<i class='fab fa-github'></i> Github"
+identifier = "ds"
+url = "https://github.com/ganquan"
+weight = 10
+
