@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neovim on My New Hugo Site</title>
+    <link>http://example.org/neovim/</link>
+    <description>Recent content in Neovim on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Nov 2022 12:50:08 +0800</lastBuildDate><atom:link href="http://example.org/neovim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First Content</title>
+      <link>http://example.org/neovim/first-content/</link>
+      <pubDate>Mon, 14 Nov 2022 12:50:28 +0800</pubDate>
+      
+      <guid>http://example.org/neovim/first-content/</guid>
+      <description>This is Neovim first content.</description>
+    </item>
+    
+  </channel>
+</rss>
