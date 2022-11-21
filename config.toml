@@ -15,6 +15,7 @@ themeVariant = "blue"
 author = "GanQuan"
 # Description of the site, will be used in meta information
 description = "TechNotes"
+disableInlineCopyToClipBoard = true
 
 [[menu.shortcuts]] 
 name = "<i class='fab fa-github'></i> Github"
