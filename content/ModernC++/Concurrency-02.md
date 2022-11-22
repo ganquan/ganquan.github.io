@@ -6,7 +6,7 @@ weight: 20
 draft: false
 ---
 
-上一篇距离说明了`std::thread`不方便获取线程执行信息，直白的讲，就是线程通信不够方便，所以就引入了`std::promise`和`std::future`。
+上一篇举例说明了`std::thread`不方便获取线程执行信息，直白的讲，就是线程通信不够方便，所以就引入了`std::promise`和`std::future`。
 
 `std::promise`用于存储异步行为中的信息，`std::future`用于获取这些信息。
 一个也许不是很恰当的理解，可以这么看：

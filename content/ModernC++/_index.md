@@ -6,13 +6,11 @@ chapter = false
 pre = "<b>1. </b>"
 +++
 
-### Chapter 0
+### 目录
 
-# 一些学习Modern C++的记录
+# Modern C++ 并发编程
 
 * [现代C++并发 01 std::thread](/modernc++/concurrency-01/)
 * [现代C++并发 02 std::future std::promise](/modernc++/concurrency-02/)
 * [现代C++并发 03 std::async](/modernc++/concurrency-03/)
 
-
-还是C++有意思啊
