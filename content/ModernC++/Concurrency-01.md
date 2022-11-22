@@ -3,6 +3,7 @@ title: "Modern C++ Concurrency 01 - std::thread"
 date: 2022-11-21T22:14:43+08:00
 tags: ["C++", "Concurrency", "Note", "Thread"]
 draft: False
+weight: 10
 ---
 
 现代C++并发编程学习01 - std::thread
@@ -10,6 +11,7 @@ draft: False
 `std::thread`是实现并发编程最基础的工具，使用简单，易于理解。
 使用`std::thread`只需要直接实例化一个`std::thread`就可以了，可以传入函数，也可以传入lambda
 ```cpp
+/* ========================================================================= */
 /* 传入函数到线程 */
 void foo() {
     std::cout << "foo()" << std::endl;
@@ -20,6 +22,7 @@ std::thread foo_thread(foo);
 foo_thread.join();
 // foo()
 
+/* ========================================================================= */
 /* 传入函数到线程，并传入参数 */
 void bar(int i) {
     i += 1;
@@ -31,6 +34,7 @@ std::thread bar_thread(bar, i);
 bar_thread.join();
 // bar(), i += 1: 3
 
+/* ========================================================================= */
 /* 传入lambda到线程 */
 std::thread lambda_thread([]() {
     std::cout << "this is lambda_thread" << std::endl;
